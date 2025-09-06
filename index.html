@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueant ERP System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f5f7f9;
+            color: #333;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .company-header {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .company-header h1 {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .menu-items {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+            font-size: 16px;
+            color: #ecf0f1;
+        }
+
+        .menu-item:hover {
+            background: #34495e;
+        }
+
+        .menu-item.active {
+            background: #34495e;
+            border-left: 4px solid #3498db;
+            color: #3498db;
+        }
+
+        /* Main Content Area */
+        .content-area {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .content-panel {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 400px;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        .content-panel h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: #2c3e50;
+        }
+        
+        .logo-container {
+            padding: 0px 0;
+            text-align: center;
+        }
+
+        .company-logo {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .sheet-container {
+            margin-top: 0px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: 600px;
+        }
+
+        .google-sheet-frame {
+            border: none;
+            min-height: 600px;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .menu-items {
+                display: flex;
+                overflow-x: auto;
+                padding: 0;
+            }
+            
+            .menu-item {
+                padding: 15px 20px;
+                white-space: nowrap;
+                border-left: none;
+                border-bottom: 4px solid transparent;
+            }
+            
+            .menu-item.active {
+                border-left: none;
+                border-bottom: 4px solid #3498db;
+            }
+            
+            .logo-container {
+                padding: 10px 0;
+            }
+    
+            .company-logo {
+                max-width: 120px;
+            }
+            
+            .google-sheet-frame {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .google-sheet-frame {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="company-header">
+            <div class="logo-container">
+                <img src="blueAnt.png" alt="Company Logo" class="company-logo">
+            </div>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item" data-target="dashboard">@ Dashboard</div>
+            <div class="menu-item active" data-target="investor">My Customer</div>
+            <div class="menu-item" data-target="newcustomerstatus">@ New Customer Status</div>
+            <div class="menu-item " data-target="prospectdata">My Prospect</div>
+            <div class="menu-item" data-target="helpdesk">Helpdesk</div>
+            <div class="menu-item" data-target="statusofservice">@ Status Of Service</div>
+            <div class="menu-item" data-target="transactiondetailstatus">@ Transaction Detail Status</div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+        <!-- <div id="dashboard" class="content-panel">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbyeBwz-HzRUP6J40z0nNTKt9cVjwU-nFGfdLAJuwrInPwjdsczFM5dThm1YGvWj8OH3/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div> -->
+        <!-- Prospect Data Panel -->
+        <div id="investor" class="content-panel active">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbzmLrgiVa4todNsSqmqbWcvOR7T8DOHAX4kRTPafDUkXma9_1CD3wJUiAzt5p4njh_a/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div>
+        <!-- <div id="newcustomerstatus" class="content-panel">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbyeBwz-HzRUP6J40z0nNTKt9cVjwU-nFGfdLAJuwrInPwjdsczFM5dThm1YGvWj8OH3/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div> -->
+        <div id="prospectdata" class="content-panel">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbxFqmJkYcKCLaIFhsGIx5X3mvb4_C7eURC-RTLPCJzPJIZuHOsbuUEbkg5Z9ig884xFaQ/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div>
+        <!-- Helpdesk Panel -->
+        <div id="helpdesk" class="content-panel">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbwNHU8ttTaACrdB3vH6VuCwa1urbrbFl7-OGP69Tw1rQhNPyqc00pFKv5C80Z7Vi6-ZbA/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div>
+       <!-- <div id="statusofservice" class="content-panel">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbyeBwz-HzRUP6J40z0nNTKt9cVjwU-nFGfdLAJuwrInPwjdsczFM5dThm1YGvWj8OH3/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div> -->
+        <!-- <div id="transactiondetailstatus" class="content-panel">
+            <div class="sheet-container">
+                <iframe src="https://script.google.com/macros/s/AKfycbyeBwz-HzRUP6J40z0nNTKt9cVjwU-nFGfdLAJuwrInPwjdsczFM5dThm1YGvWj8OH3/exec" 
+                        frameborder="0" 
+                        width="100%" 
+                        height="600"
+                        class="google-sheet-frame">
+                </iframe>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all menu items and content panels
+            const menuItems = document.querySelectorAll('.menu-item');
+            const contentPanels = document.querySelectorAll('.content-panel');
+            
+            // Add click event to each menu item
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Get the target panel ID
+                    const targetPanel = this.getAttribute('data-target');
+                    
+                    // Remove active class from all menu items and panels
+                    menuItems.forEach(mi => mi.classList.remove('active'));
+                    contentPanels.forEach(panel => panel.classList.remove('active'));
+                    
+                    // Add active class to clicked menu item
+                    this.classList.add('active');
+                    
+                    // Show the target panel
+                    document.getElementById(targetPanel).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
